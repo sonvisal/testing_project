@@ -1,28 +1,13 @@
 module.exports = function() {
     var fs = require('fs');
+    console.log("test");
+    var replaceTitle =this.replaceTitle =require("../support/replaceTitle.js").replaceTitle;
+    console.log(replaceTitle);
 
     this.Given(/^I have visited page product "([^"]*)"$/, function(title,callback) {
-        title = title.replace(/\s/g, "-");
-        title = title.replace(/\%/g, "(percentag)");
-        title = title.replace(/\+/g, "(plush)");
-        title = title.replace(/\ô/g, "(ocir)");
-        title = title.replace(/\®/g, "(copyright)");
-        title = title.replace(/\°/g, "(number)");
-        title = title.replace(/\Ô/g, "(bigocir)");
-        title = title.replace(/\²/g, "(square)");
-        title = title.replace(/\`/g, "(accentaigu)");
-        title = title.replace(/\é/g, "(eaccentaigu)");
-        title = title.replace(/\É/g, "(bigeaccentaigu)");
-        title = title.replace(/\&/g, "(and)");
-        title = title.replace(/\//g, "(slash)");
-        title = title.replace(/\’/g, "(apostrophe)");
-        //title = title.replace(/\'/g,"(quote)");
-        title = title.replace(/\!/g, "(warning)");
-        title = title.replace(/\?/g, "(question)");
-        title = title.replace(/\$/g, "(dolla)");
-        title = title.replace(/\è/g, "(eaccentgrave)");
+        var titlePro =replaceTitle(title);
         // title = title.replace(/\–/g,"(hyphen)");
-        browser.url("http://localhost:3000/details/" + title);
+        browser.url("http://localhost:3000/details/" + titlePro);
         setTimeout(callback, 10000);
     });
 
