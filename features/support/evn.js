@@ -1,5 +1,5 @@
 var configure = function () {
-  this.setDefaultTimeout(100 * 1000);
+  this.setDefaultTimeout(1000 * 1000);
 };
 
 module.exports = configure;

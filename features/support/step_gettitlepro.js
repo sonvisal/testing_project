@@ -1,7 +1,7 @@
 module.exports = function() {
     var fs = require('fs');
 
-    this.Given(/^I have visited page product "([^"]*)"$/, { timesout: 100000 }, function(title) {
+    this.Given(/^I have visited page product "([^"]*)"$/, function(title) {
         title = title.replace(/\s/g, "-");
         title = title.replace(/\%/g, "(percentag)");
         title = title.replace(/\+/g, "(plush)");
@@ -23,22 +23,22 @@ module.exports = function() {
         title = title.replace(/\è/g, "(eaccentgrave)");
         // title = title.replace(/\–/g,"(hyphen)");
         browser.url("http://localhost:3000/details/" + title);
-        timesout: 100000;
+        
     });
 
 
-    this.Then(/^I see image fo product$/, { timesout: 100000 }, function() {
+    this.Then(/^I see image fo product$/, function() {
         var image = browser.elements("img#hoverZoom").getAttribute("src");
         console.log(image);
         //expect(image).toContain(image);
     });
 
-    this.When(/^I can check image url$/, { timesout: 100000 }, function() {
+    this.When(/^I can check image url$/, function() {
         var imageurl = browser.elements("img#hoverZoom").getAttribute("src");
         browser.url(imageurl);
     });
 
-    this.Then(/^I can see image found or not$/, { timesout: 100000 }, function() {
+    this.Then(/^I can see image found or not$/, function() {
         var title = browser.elements("title").getAttribute("textContent");
         console.log("title==" + title);
         if (title == "404 Not Found") {
@@ -64,7 +64,7 @@ module.exports = function() {
 
     });
 
-    this.Given(/^I have visited page Clarins-Body-Lift-Cellulite-Control the Web "([^"]*)"$/, { timesout: 100000 }, function(title) {
+    this.Given(/^I have visited page Clarins-Body-Lift-Cellulite-Control the Web "([^"]*)"$/, function(title) {
         title = title.replace(/\s/g, "-");
         title = title.replace(/\%/g, "(percentag)");
         title = title.replace(/\+/g, "(plush)");
@@ -86,86 +86,22 @@ module.exports = function() {
         title = title.replace(/\è/g, "(eaccentgrave)");
         // title = title.replace(/\–/g,"(hyphen)");
         browser.url("http://localhost:3000/details/" + title);
-        timesout: 100000;
+        
     });
 
 
-    this.Then(/^I see image for Clarins Body Lift Cellulite Control$/, { timesout: 100000 }, function() {
+    this.Then(/^I see image for Clarins Body Lift Cellulite Control$/, function() {
         var image = browser.elements("img#hoverZoom").getAttribute("src");
         console.log(image);
         //expect(image).toContain(image);
     });
 
-    this.When(/^I can check image url Clarins Body Lift Cellulite Control$/, { timesout: 100000 }, function() {
+    this.When(/^I can check image url Clarins Body Lift Cellulite Control$/, function() {
         var imageurl = browser.elements("img#hoverZoom").getAttribute("src");
         browser.url(imageurl);
     });
 
-    this.Then(/^I can see image found or not Clarins Body Lift Cellulite Control$/, { timesout: 100000 }, function() {
-        var title = browser.elements("title").getAttribute("textContent");
-        console.log("title==" + title);
-        if (title == "404 Not Found") {
-            var textnotfound = browser.elements("h1").getAttribute("textContent");
-            var imagenotfound = browser.elements("body > p").getAttribute("textContent");
-            console.log("tile" + imagenotfound);
-
-            if (textnotfound == "Not Found") {
-                var datamatch = imagenotfound.match("(.)(\/upload.*?\.jpg|\/upload.*?\.png)(.)");
-                console.log("image not found ");
-                console.log("image match " + datamatch[2]);
-                var data = datamatch[2];
-                console.log("image url" + typeof(data));
-                fs.writeFile("imagenotfound.txt", data, function(err) {
-                    if (err) throw err;
-                    console.log(err);
-                });
-            } else {
-                console.log("found image");
-            }
-        } else {
-            console.log("product has image");
-        }
-
-    });
-
-    this.Given(/^I have visited page Mythos-Zippo-Fragrances-for-men the Web "([^"]*)"$/, { timesout: 100000 }, function(title) {
-        title = title.replace(/\s/g, "-");
-        title = title.replace(/\%/g, "(percentag)");
-        title = title.replace(/\+/g, "(plush)");
-        title = title.replace(/\ô/g, "(ocir)");
-        title = title.replace(/\®/g, "(copyright)");
-        title = title.replace(/\°/g, "(number)");
-        title = title.replace(/\Ô/g, "(bigocir)");
-        title = title.replace(/\²/g, "(square)");
-        title = title.replace(/\`/g, "(accentaigu)");
-        title = title.replace(/\é/g, "(eaccentaigu)");
-        title = title.replace(/\É/g, "(bigeaccentaigu)");
-        title = title.replace(/\&/g, "(and)");
-        title = title.replace(/\//g, "(slash)");
-        title = title.replace(/\’/g, "(apostrophe)");
-        //title = title.replace(/\'/g,"(quote)");
-        title = title.replace(/\!/g, "(warning)");
-        title = title.replace(/\?/g, "(question)");
-        title = title.replace(/\$/g, "(dolla)");
-        title = title.replace(/\è/g, "(eaccentgrave)");
-        // title = title.replace(/\–/g,"(hyphen)");
-        browser.url("http://localhost:3000/details/" + title);
-        timesout: 100000;
-    });
-
-
-    this.Then(/^I see image for Mythos-Zippo-Fragrances-for-men$/, { timesout: 100000 }, function() {
-        var image = browser.elements("img#hoverZoom").getAttribute("src");
-        console.log(image);
-        //expect(image).toContain(image);
-    });
-
-    this.When(/^I can check image url Mythos-Zippo-Fragrances-for-men$/, { timesout: 100000 }, function() {
-        var imageurl = browser.elements("img#hoverZoom").getAttribute("src");
-        browser.url(imageurl);
-    });
-
-    this.Then(/^I can see image found or not Mythos-Zippo-Fragrances-for-men$/, { timesout: 100000 }, function() {
+    this.Then(/^I can see image found or not Clarins Body Lift Cellulite Control$/, function() {
         var title = browser.elements("title").getAttribute("textContent");
         console.log("title==" + title);
         if (title == "404 Not Found") {
@@ -191,7 +127,8 @@ module.exports = function() {
         }
 
     });
-    this.Given(/^I have visited page CLARINS-AZZARO-DECIBEL-TESTER "([^"]*)"$/, { timesout: 100000 }, function(title) {
+
+    this.Given(/^I have visited page Mythos-Zippo-Fragrances-for-men the Web "([^"]*)"$/, function(title) {
         title = title.replace(/\s/g, "-");
         title = title.replace(/\%/g, "(percentag)");
         title = title.replace(/\+/g, "(plush)");
@@ -213,22 +150,22 @@ module.exports = function() {
         title = title.replace(/\è/g, "(eaccentgrave)");
         // title = title.replace(/\–/g,"(hyphen)");
         browser.url("http://localhost:3000/details/" + title);
-        timesout: 100000;
+        
     });
 
 
-    this.Then(/^I see image for CLARINS-AZZARO-DECIBEL-TESTER$/, { timesout: 100000 }, function() {
+    this.Then(/^I see image for Mythos-Zippo-Fragrances-for-men$/, function() {
         var image = browser.elements("img#hoverZoom").getAttribute("src");
         console.log(image);
         //expect(image).toContain(image);
     });
 
-    this.When(/^I can check image url CLARINS-AZZARO-DECIBEL-TESTER$/, { timesout: 100000 }, function() {
+    this.When(/^I can check image url Mythos-Zippo-Fragrances-for-men$/, function() {
         var imageurl = browser.elements("img#hoverZoom").getAttribute("src");
         browser.url(imageurl);
     });
 
-    this.Then(/^I can see image found or not CLARINS-AZZARO-DECIBEL-TESTER$/, { timesout: 100000 }, function() {
+    this.Then(/^I can see image found or not Mythos-Zippo-Fragrances-for-men$/, function() {
         var title = browser.elements("title").getAttribute("textContent");
         console.log("title==" + title);
         if (title == "404 Not Found") {
@@ -254,7 +191,7 @@ module.exports = function() {
         }
 
     });
-    this.Given(/^I have visited page COFINLUX-CAFE-ESPRESSO-P.F-EDT-TESTER "([^"]*)"$/, { timesout: 100000 }, function(title) {
+    this.Given(/^I have visited page CLARINS-AZZARO-DECIBEL-TESTER "([^"]*)"$/, function(title) {
         title = title.replace(/\s/g, "-");
         title = title.replace(/\%/g, "(percentag)");
         title = title.replace(/\+/g, "(plush)");
@@ -276,22 +213,85 @@ module.exports = function() {
         title = title.replace(/\è/g, "(eaccentgrave)");
         // title = title.replace(/\–/g,"(hyphen)");
         browser.url("http://localhost:3000/details/" + title);
-        timesout: 100000;
+        
     });
 
 
-    this.Then(/^I see image for COFINLUX-CAFE-ESPRESSO-P.F-EDT-TESTER$/, { timesout: 100000 }, function() {
+    this.Then(/^I see image for CLARINS-AZZARO-DECIBEL-TESTER$/, function() {
         var image = browser.elements("img#hoverZoom").getAttribute("src");
         console.log(image);
         //expect(image).toContain(image);
     });
 
-    this.When(/^I can check image url COFINLUX-CAFE-ESPRESSO-P.F-EDT-TESTER$/, { timesout: 100000 }, function() {
+    this.When(/^I can check image url CLARINS-AZZARO-DECIBEL-TESTER$/, function() {
         var imageurl = browser.elements("img#hoverZoom").getAttribute("src");
         browser.url(imageurl);
     });
 
-    this.Then(/^I can see image found or not COFINLUX-CAFE-ESPRESSO-P.F-EDT-TESTER$/, { timesout: 100000 }, function() {
+    this.Then(/^I can see image found or not CLARINS-AZZARO-DECIBEL-TESTER$/, function() {
+        var title = browser.elements("title").getAttribute("textContent");
+        console.log("title==" + title);
+        if (title == "404 Not Found") {
+            var textnotfound = browser.elements("h1").getAttribute("textContent");
+            var imagenotfound = browser.elements("body > p").getAttribute("textContent");
+            console.log("tile" + imagenotfound);
+
+            if (textnotfound == "Not Found") {
+                var datamatch = imagenotfound.match("(.)(\/upload.*?\.jpg|\/upload.*?\.png)(.)");
+                console.log("image not found ");
+                console.log("image match " + datamatch[2]);
+                var data = datamatch[2];
+                console.log("image url" + typeof(data));
+                fs.writeFile("imagenotfound.txt", data, function(err) {
+                    if (err) throw err;
+                    console.log(err);
+                });
+            } else {
+                console.log("found image");
+            }
+        } else {
+            console.log("product has image");
+        }
+
+    });
+    this.Given(/^I have visited page COFINLUX-CAFE-ESPRESSO-P.F-EDT-TESTER "([^"]*)"$/, function(title) {
+        title = title.replace(/\s/g, "-");
+        title = title.replace(/\%/g, "(percentag)");
+        title = title.replace(/\+/g, "(plush)");
+        title = title.replace(/\ô/g, "(ocir)");
+        title = title.replace(/\®/g, "(copyright)");
+        title = title.replace(/\°/g, "(number)");
+        title = title.replace(/\Ô/g, "(bigocir)");
+        title = title.replace(/\²/g, "(square)");
+        title = title.replace(/\`/g, "(accentaigu)");
+        title = title.replace(/\é/g, "(eaccentaigu)");
+        title = title.replace(/\É/g, "(bigeaccentaigu)");
+        title = title.replace(/\&/g, "(and)");
+        title = title.replace(/\//g, "(slash)");
+        title = title.replace(/\’/g, "(apostrophe)");
+        //title = title.replace(/\'/g,"(quote)");
+        title = title.replace(/\!/g, "(warning)");
+        title = title.replace(/\?/g, "(question)");
+        title = title.replace(/\$/g, "(dolla)");
+        title = title.replace(/\è/g, "(eaccentgrave)");
+        // title = title.replace(/\–/g,"(hyphen)");
+        browser.url("http://localhost:3000/details/" + title);
+        
+    });
+
+
+    this.Then(/^I see image for COFINLUX-CAFE-ESPRESSO-P.F-EDT-TESTER$/, function() {
+        var image = browser.elements("img#hoverZoom").getAttribute("src");
+        console.log(image);
+        //expect(image).toContain(image);
+    });
+
+    this.When(/^I can check image url COFINLUX-CAFE-ESPRESSO-P.F-EDT-TESTER$/, function() {
+        var imageurl = browser.elements("img#hoverZoom").getAttribute("src");
+        browser.url(imageurl);
+    });
+
+    this.Then(/^I can see image found or not COFINLUX-CAFE-ESPRESSO-P.F-EDT-TESTER$/, function() {
         var title = browser.elements("title").getAttribute("textContent");
         console.log("title==" + title);
         if (title == "404 Not Found") {
