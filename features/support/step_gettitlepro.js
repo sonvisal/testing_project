@@ -8,7 +8,7 @@ module.exports = function() {
         var titlePro =replaceTitle(title);
         // title = title.replace(/\–/g,"(hyphen)");
         browser.url("http://localhost:3000/details/" + titlePro);
-        setTimeout(callback, 10000);
+        setTimeout(callback, 60000);
     });
 
 
@@ -21,7 +21,7 @@ module.exports = function() {
     this.When(/^I can check image url$/, function(callback) {
         var imageurl = browser.elements("img#hoverZoom").getAttribute("src");
         browser.url(imageurl);
-        setTimeout(callback, 10000);
+        setTimeout(callback, 30000);
     });
 
     this.Then(/^I can see image found or not$/, function() {
