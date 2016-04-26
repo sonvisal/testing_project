@@ -1,3 +1,4 @@
+@fixture
 Feature: Get title product the Web
 
   As a human

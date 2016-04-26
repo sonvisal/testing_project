@@ -1,7 +1,7 @@
 module.exports = function() {
     var fs = require('fs');
 
-    this.Given(/^I have visited page product "([^"]*)"$/, function(title) {
+    this.Given(/^I have visited page product "([^"]*)"$/, function(title,callback) {
         title = title.replace(/\s/g, "-");
         title = title.replace(/\%/g, "(percentag)");
         title = title.replace(/\+/g, "(plush)");
@@ -23,6 +23,7 @@ module.exports = function() {
         title = title.replace(/\è/g, "(eaccentgrave)");
         // title = title.replace(/\–/g,"(hyphen)");
         browser.url("http://localhost:3000/details/" + title);
+        setTimeout(callback, 10000);
     });
 
 
@@ -32,9 +33,10 @@ module.exports = function() {
         //expect(image).toContain(image);
     });
 
-    this.When(/^I can check image url$/, function() {
+    this.When(/^I can check image url$/, function(callback) {
         var imageurl = browser.elements("img#hoverZoom").getAttribute("src");
         browser.url(imageurl);
+        setTimeout(callback, 10000);
     });
 
     this.Then(/^I can see image found or not$/, function() {
