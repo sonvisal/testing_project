@@ -8,7 +8,7 @@ module.exports = function() {
         var titlePro =replaceTitle(title);
         // title = title.replace(/\–/g,"(hyphen)");
         browser.url("http://localhost:3000/details/" + titlePro);
-        setTimeout(callback, 60000);
+        setTimeout(callback, 10000);
     });
 
 
